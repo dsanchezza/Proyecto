@@ -157,3 +157,14 @@ Este método genera un comprobante general en pdf que incluye:
 - Un gráfico de barras con el resumen de los productos más vendidos.
 
 Para el gráfico se hace uso de la librería `matplotlib` que fue instalada previamente, y para el pdf se usa `reportlab` que crea un pdf de tamaño A4
+
+# gui_inventario.py
+
+```python
+import tkinter as tk
+from tkinter import messagebox
+from clases import Proveedor, Producto, Inventario, Venta
+import datetime
+```
+
+En cuanto a las importaciones, contamos con 4. `tkinter` crea la GUI, `messagebox` muestra mensajes al usuario, la importación de clases trae las clases definidas anteriormente en `clases.py`, en cuanto a `datetime` esta sirve para registrar fechas de compra y venta. 
