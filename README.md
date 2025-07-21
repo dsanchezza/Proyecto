@@ -6,4 +6,12 @@ Integrantes:
 - Samuel Nicolás Garzón Gomez
 - David Steven Torres Garzón
 
-Este proyecto contiene diferentes archivos .py en los cuales se definen diferentes funcionalidades, sin embargo la función principal de nuestro proyecto consiste de una manera de almacenar datos con diferentes atributos en una base de datos y hacer operaciones desde el inventario con dichos objetos.
+Este proyecto consiste en desarrollar una aplicación quue permita gestionar el inventario en bodega de una empresa de partes de autos, este mismo contiene diferentes archivos .py en los cuales se definen diferentes funcionalidades, integrando una interfaz gráfica, una base de datos SQLite y exportación de reportes en PDF con gráficas incluidas.
+
+Este sistema de inventario permite:
+- Registrar productos con diferentes atributos
+- Consultar, editar y almacenar el inventario en una base de datos SQLite
+- Filtrar las ventas en rangos de fecha
+- Generar comprobantes en PDF incluyendo sus respectivos gráficos de ventas
+- Hacer un ranking de los productos con mayor y menor stock
+- Interactuar por medio de una interfaz gráfica hecha con tkinter
