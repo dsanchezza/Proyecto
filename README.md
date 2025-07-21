@@ -105,3 +105,5 @@ class Producto:
     def informacion_producto(self):
         return f"{self.nombre} - {self.marca} {self.modelo} ({self.cantidad} unidades)"
 ```
+
+Esta clase representa cada producto que se maneja en el inventario como ID, nombre, descripción, marca, modelo, fecha de compra, cantidad y precio unitario; proveedor es una instancia de la clase Proveedor. En cuanto a los metodos, `sumar_stock` suma una cantidad al stock actual del producto, mientras que `reducir_stock` le resta unidades al stock actual __solo si hay suficiente,__ si no hay inventario suficiente, no hace nada. `informacion_producto` devuelve un string con el nombre, marca, modelo y cantidad de un producto en inventario
