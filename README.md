@@ -7,7 +7,7 @@ Integrantes:
 - Samuel Nicolás Garzón Gomez
 - David Steven Torres Garzón
 
-Este proyecto consiste en desarrollar una aplicación quue permita gestionar el inventario en bodega de una empresa de partes de autos, este mismo contiene diferentes archivos .py en los cuales se definen diferentes funcionalidades, integrando una interfaz gráfica, una base de datos SQLite y exportación de reportes en PDF con gráficas incluidas.
+Este proyecto consiste en desarrollar una aplicación que permita gestionar el inventario en bodega de una empresa de partes de autos, este mismo contiene diferentes archivos .py en los cuales se definen diferentes funcionalidades, integrando una interfaz gráfica, una base de datos SQLite y exportación de reportes en PDF con gráficas incluidas.
 
 Este sistema de inventario permite:
 - Registrar productos con diferentes atributos
