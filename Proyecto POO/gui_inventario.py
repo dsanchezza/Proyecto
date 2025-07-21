@@ -104,7 +104,6 @@ def iniciar_gui(inventario):
 
         messagebox.showinfo("Ranking de stock", mensaje)
 
-    # --- GUI ---
     ventana = tk.Tk()
     ventana.title("Sistema de Inventario de Partes de Autos")
     ventana.geometry("600x750")
