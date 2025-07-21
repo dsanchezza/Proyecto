@@ -38,3 +38,20 @@ python -m venv venv
 #Aún falta activar el entorno virtual para que empiece a funcionar, este se activará usando el siguiente comando
 venv\Scripts\activate
 ```
+
+Puesto que en este proyecto se hace uso de diferentes librerías externas, también se instalarán en la terminal usando el siguiente comando
+
+```python
+pip install pandas openpyxl matplotlib
+```
+
+Sin embargo, aún falta una librería, la cual para instalarse es necesario crear una cuenta en la página web de esta misma
+- Link para registrarse (es importante consultar su nombre de usuario antes de continuar ya que este se pide durante la instalación)
+
+Finalmente, para la instalación de este programa se utilizará el siguiente comando en la terminal
+
+```python
+pip install rlextra -i https://www.reportlab.com/pypi/
+```
+
+Se solicitará el nombre de usuario y la contraseña que se introdujo cuando se creó la cuenta, posteriormente iniciará la descarga
