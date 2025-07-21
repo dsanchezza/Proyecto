@@ -208,3 +208,48 @@ Finalmente un botón para añadir el producto
 ```python
 tk.Button(ventana, text="Agregar Producto", command=agregar_producto).pack(pady=10)
 ```
+
+# Cargar_desde_excel.py
+
+```python
+import sqlite3
+import pandas as pd
+```
+
+Empezando con las librerías, se importa sqlite3 para conectarse y ejecutar comandos en la base de datos SQLite, y pandas para leer y manejar el archivo excel.
+
+```python
+df = pd.read_excel("productos.xlsx", engine='openpyxl')
+```
+Aquí se lee el archivo `productos.xlsx`, el siguiente método se usa obligatoriamente en todos los archivos .xlsx
+
+
+```python
+productos = [
+    (
+        int(row["id"]),
+        str(row["nombre"]),
+        str(row["descripcion"]),
+        str(row["marca"]),
+        str(row["modelo"]),
+        int(row["proveedor_id"]),
+        str(row["fecha_compra"]),
+        int(row["cantidad"]),
+        float(row["precio_unitario"])
+    )
+    for _, row in df.iterrows()
+]
+```
+
+Se recorre cada fila haciendo uso de `iterrows` y cada fila se convierte en una tupla que convierte los valores en sus tipos correspondientes (int, float, str, etc)
+
+```python
+cursor.executemany('''
+    INSERT INTO producto (
+        id, nombre, descripcion, marca, modelo,
+        proveedor_id, fecha_compra, cantidad, precio_unitario
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+''', productos)
+```
+
+Se insertan las tuplas en la tabla producto y se insertan los datos en la tabla
