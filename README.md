@@ -168,3 +168,43 @@ import datetime
 ```
 
 En cuanto a las importaciones, contamos con 4. `tkinter` crea la GUI, `messagebox` muestra mensajes al usuario, la importación de clases trae las clases definidas anteriormente en `clases.py`, en cuanto a `datetime` esta sirve para registrar fechas de compra y venta. 
+
+
+En cuanto a la función principal `iniciar_gui` esta define todas las funcionalidades internas que se pueden realizar desde la ventana
+
+```python
+inventario.crear_base_datos()
+inventario.cargar_inventario_desde_sql()
+ventas_registradas = []
+```
+
+- Se crea la base de datos si no existe
+- Se cargan productos existentes desde SQLite
+- Se inicia una lista vacia para registrar ventas en memoria
+
+La GUI está construida de la siguiente manera:
+
+```python
+ventana = tk.Tk()
+ventana.title("Sistema de Inventario de Partes de Autos")
+ventana.geometry("600x750")
+```
+- tk.Tk: Crea la ventana principal
+- title: Define el nombre de la ventana
+- geometry: Define el tamaño de la ventana
+
+Se crea un titulo, y posteriormente se crean los campos para introducir los atributos del producto:
+
+```python
+tk.Label(ventana, text="ID del producto:").pack()
+entry_id = tk.Entry(ventana)
+entry_id.pack()
+```
+
+Esto se repite con el resto del código en donde se necesite introducir información.
+
+Finalmente un botón para añadir el producto
+
+```python
+tk.Button(ventana, text="Agregar Producto", command=agregar_producto).pack(pady=10)
+```
