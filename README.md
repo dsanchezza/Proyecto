@@ -109,23 +109,131 @@ class Producto:
 Esta clase representa cada producto que se maneja en el inventario como ID, nombre, descripción, marca, modelo, fecha de compra, cantidad y precio unitario; proveedor es una instancia de la clase Proveedor. En cuanto a los metodos, `sumar_stock` suma una cantidad al stock actual del producto, mientras que `reducir_stock` le resta unidades al stock actual __solo si hay suficiente,__ si no hay inventario suficiente, no hace nada. `informacion_producto` devuelve un string con el nombre, marca, modelo y cantidad de un producto en inventario
 
 **Clase inventario**
+
 La clase inventario es el núcleo del sistema de gestión de productos, puesto que maneja la lista de productos y la base de datos SQLite
 
+
 ```python
-class Inventario:
-    def __init__(self):
+def crear_base_datos(self):
+        conexion = sqlite3.connect(self.nombre_base_datos)
+        cursor = conexion.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS Ventas (
+                id_venta INTEGER PRIMARY KEY AUTOINCREMENT,
+                producto_id INTEGER,
+                producto_nombre TEXT,
+                cantidad_vendida INTEGER,
+                precio_unitario REAL,
+                total REAL,
+                fecha_venta TEXT
+            )
+        ''')
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS Proveedores (
+                id INTEGER,
+                nombre TEXT,
+                telefono INTEGER,
+                direccion TEXT,
+                email TEXT
+            )
+        ''')
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS Productos (
+                id INTEGER PRIMARY KEY,
+                nombre TEXT NOT NULL,
+                descripcion TEXT,
+                marca TEXT,
+                modelo TEXT,
+                proveedor_id INTEGER,
+                proveedor_nombre TEXT,
+                proveedor_telefono INTEGER,
+                proveedor_direccion TEXT,
+                proveedor_email TEXT,
+                fecha_compra TEXT,
+                cantidad INTEGER,
+                precio_unitario REAL
+            )
+        ''')
+    conexion.commit()
+        conexion.close()
+```
+
+Este metodo crea las tablas necesarias en la base de datos SQLite si no existen,  lo cual permite inicializar la estructura para guardar la información de productos, ventas y proveedores.
+
+```python
+def guardar_inventario(self):
+        conexion = sqlite3.connect(self.nombre_base_datos)
+        cursor = conexion.cursor()
+        for producto in self.productos:
+            cursor.execute('''
+                INSERT OR REPLACE INTO Productos (
+                    id, nombre, descripcion, marca, modelo,
+                    proveedor_id, proveedor_nombre, proveedor_telefono,
+                    proveedor_direccion, proveedor_email,
+                    fecha_compra, cantidad, precio_unitario
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                producto.id,
+                producto.nombre,
+                producto.descripcion,
+                producto.marca,
+                producto.modelo,
+                producto.proveedor.id,
+                producto.proveedor.nombre,
+                producto.proveedor.telefono,
+                producto.proveedor.direccion,
+                producto.proveedor.email,
+                producto.fecha_compra.strftime("%Y-%m-%d %H:%M:%S"),
+                producto.cantidad,
+                producto.precio_unitario
+            ))
+        conexion.commit()
+        conexion.close()
+```
+
+Guarda los productos dentro de la tabla `productos` de la base de datos y está constantemente actualizando la base de datos.
+
+```python
+def hacer_backup(self):
+        if not os.path.exists("backups"):
+            os.makedirs("backups")
+        try:
+            fecha = datetime.now().strftime("%Y%m%d_%H%M%S")
+            shutil.copy(self.nombre_base_datos, f"backups/inventario_backup_{fecha}.db")
+        except FileNotFoundError:
+            pass
+```
+
+Crea una copia de seguridad del archivo `inventario.db` dentro de una carpeta llamada `backups`
+
+```python
+    def cargar_inventario_desde_sql(self):
+        conexion = sqlite3.connect("inventario.db")
+        cursor = conexion.cursor()
+        cursor.execute("""
+            SELECT id, nombre, descripcion, marca, modelo,
+                proveedor_id, proveedor_nombre, fecha_compra,
+                cantidad, precio_unitario
+            FROM Productos
+        """)
+        filas = cursor.fetchall()
         self.productos = []
-        self.nombre_base_datos = "inventario.db"
+        for fila in filas:
+            (
+                id_producto, nombre, descripcion, marca, modelo,
+                proveedor_id, proveedor_nombre, fecha_compra,
+                cantidad, precio_unitario
+            ) = fila
+
+            proveedor = Proveedor(proveedor_id, proveedor_nombre, 0, "", "")
+            fecha = datetime.fromisoformat(fecha_compra)
+
+            producto = Producto(
+                id_producto, nombre, descripcion, marca, modelo,
+                proveedor, fecha, cantidad, precio_unitario
+            )
+            self.productos.append(producto)
+        conexion.close()
 ```
 
-Crea una lista interna que guarda objetos, adicionalmente, crea el nombre de la base de datos (en este caso inventario.db)
-
-```python
-def buscar_por_id(self, id_producto):
-    for producto in self.productos:
-        if producto.id == id_producto:
-            return producto
-    return None
-```
-`self.productos` es una lista que contiene todos aquellos objetos actualmente cargados en el inventario, para cada producto en esta lista se compara el atributo id con el valor entregado como parámetro (`id_producto` en este caso) si encuentra un producto cuyo id coincida lo retorna, si no lo encuentra, retorna un None para indicar que el producto no está en el inventario actual.
-
+Lee los productos almacenados en la base de datos y los carga al iniciar la aplicación para que estén disponibles.
