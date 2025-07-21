@@ -61,3 +61,7 @@ Se solicitará el nombre de usuario y la contraseña que se introdujo cuando se 
 
 
 # Definición y explicación de código
+
+En nuestro archivo `clases.py` se encuentra toda la información de las clases del sistema de invetario
+
+**Clase proveedor**
