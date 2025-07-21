@@ -25,9 +25,6 @@ python --version
 pip --version
 ```
 
-<img width="2826" height="3834" alt="Mermaid_Chart_-_Create_complex_visual_diagrams_with_text _A_smarter_way_of_creating_diagrams -2025-07-21-161010" src="https://github.com/user-attachments/assets/e1d1bec7-fa47-4df4-965d-9a783bf3236e" />
-
-
 Si está correctamente instalado, ambos comandos devolverán la versión, así podemos continuar al siguiente paso
 
 En este proyecto se hace uso de un entorno virtual, al crear la carpeta es importante que esto sea lo primero que se haga puesto que las dependencias del proyecto se instalarán en el entorno virtual, el cual se puede crear con el siguiente comando en la terminal:
@@ -56,7 +53,7 @@ pip install rlextra -i https://www.reportlab.com/pypi/
 Se solicitará el nombre de usuario y la contraseña que se introdujo cuando se creó la cuenta, posteriormente iniciará la descarga
 
 # Diagrama de clases
-<img width="1329" height="3840" alt="Mermaid_Chart_-_Create_complex_visual_diagrams_with_text _A_smarter_way_of_creating_diagrams -2025-07-20-171544" src="https://github.com/user-attachments/assets/7d83d3de-85d4-4e4d-9a86-eaba15801c0a" />
+<img width="2826" height="3834" alt="Mermaid_Chart_-_Create_complex_visual_diagrams_with_text _A_smarter_way_of_creating_diagrams -2025-07-21-161010" src="https://github.com/user-attachments/assets/e1d1bec7-fa47-4df4-965d-9a783bf3236e" />
 
 
 # Definición y explicación de código
