@@ -2,12 +2,10 @@ import tkinter as tk
 from tkinter import messagebox
 from clases import Proveedor, Producto, Inventario, Venta
 import datetime
-import pandas as pd 
 
 def iniciar_gui(inventario):
     inventario.crear_base_datos()
     inventario.cargar_inventario_desde_sql()
-
     
     ventas_registradas = []
 
@@ -150,7 +148,6 @@ def iniciar_gui(inventario):
     tk.Label(ventana, text="Fecha fin (YYYY-MM-DD):").pack()
     entry_fecha_fin = tk.Entry(ventana)
     entry_fecha_fin.pack()
-
     tk.Button(ventana, text="Filtrar ventas por fecha", command=filtrar_ventas_por_fecha).pack(pady=5)
     tk.Button(ventana, text="Mostrar ranking de stock", command=mostrar_ranking_stock).pack(pady=5)
 
