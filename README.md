@@ -253,3 +253,23 @@ cursor.executemany('''
 ```
 
 Se insertan las tuplas en la tabla producto y se insertan los datos en la tabla
+
+# Main.py
+
+Finalmente, desde el archivo `main.py` ocurre toda la ejecución del programa y allí será donde se use
+
+```python
+def main():
+    inventario = Inventario()
+```
+
+Crea una instancia del inventario para gestionar productos y ventas en la base de datos
+
+```python
+if __name__ == "__main__":
+    main()
+```
+
+Este archivo es una convención de python para que el archivo se ejecute directamente desde `main.py`
+
+(Para una mejor visualización del programa se recomienda instalar una extensión desde vscode de lector y visualizador de archivos PDF y .xlsx, esto se hace para poder visualizar los archivos desde vscode y no tener que ir hasta la carpeta de origen para verlos)
