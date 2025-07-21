@@ -25,8 +25,7 @@ python --version
 pip --version
 ```
 
-
-<img width="1191" height="134" alt="Captura de pantalla 2025-07-20 230414" src="https://github.com/user-attachments/assets/ae645f88-1b62-48db-a213-7fdf9cb9059d" />
+<img width="2826" height="3834" alt="Mermaid_Chart_-_Create_complex_visual_diagrams_with_text _A_smarter_way_of_creating_diagrams -2025-07-21-161010" src="https://github.com/user-attachments/assets/e1d1bec7-fa47-4df4-965d-9a783bf3236e" />
 
 
 Si está correctamente instalado, ambos comandos devolverán la versión, así podemos continuar al siguiente paso
