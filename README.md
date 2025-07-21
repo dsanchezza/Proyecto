@@ -31,8 +31,10 @@ pip --version
 
 Si está correctamente instalado, ambos comandos devolverán la versión, así podemos continuar al siguiente paso
 
-En este proyecto se hace uso de un entorno virtual, al crear la carpeta es importante que esto sea lo primero que se haga puesto que las dependencias del proyecto se instalarán en el entorno virtual, el cual se puede crear con el siguiente comando:
+En este proyecto se hace uso de un entorno virtual, al crear la carpeta es importante que esto sea lo primero que se haga puesto que las dependencias del proyecto se instalarán en el entorno virtual, el cual se puede crear con el siguiente comando en la terminal:
 
 ```python
 python -m venv venv
+#Aún falta activar el entorno virtual para que empiece a funcionar, este se activará usando el siguiente comando
+venv\Scripts\activate
 ```
