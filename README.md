@@ -62,6 +62,46 @@ Se solicitará el nombre de usuario y la contraseña que se introdujo cuando se 
 
 # Definición y explicación de código
 
-En nuestro archivo `clases.py` se encuentra toda la información de las clases del sistema de invetario
+En nuestro archivo `clases.py` se encuentra toda la información de las clases del sistema de inventario
 
 **Clase proveedor**
+
+```python
+class Proveedor:
+    def __init__(self, id: int, nombre, telefono: int, direccion, email):
+        self.id = id
+        self.nombre = nombre
+        self.telefono = telefono
+        self.direccion = direccion
+        self.email = email
+
+    def informacion_proveedor(self):
+        return f"{self.nombre} ({self.telefono})"
+```
+La clase proveedor guarda información tal como ID, nombre del proveedor, teléfono, dirección y correo electronico, adicionalmente, tiene un metodo `informacion_proveedor` el cual retirna el nombre y teléfono del proveedor.
+
+**Clase producto**
+```python
+class Producto:
+    def __init__(self, id: int, nombre, descripcion, marca, modelo, proveedor: Proveedor, fecha_compra: datetime, cantidad, precio_unitario):
+        self.id = id
+        self.nombre = nombre
+        self.descripcion = descripcion
+        self.marca = marca
+        self.modelo = modelo
+        self.proveedor = proveedor
+        self.fecha_compra = fecha_compra
+        self.cantidad = cantidad
+        self.precio_unitario = precio_unitario
+
+    def sumar_stock(self, cantidad):
+        self.cantidad += cantidad
+
+    def reducir_stock(self, cantidad):
+        if self.cantidad < cantidad:
+            return
+        self.cantidad -= cantidad
+
+    def informacion_producto(self):
+        return f"{self.nombre} - {self.marca} {self.modelo} ({self.cantidad} unidades)"
+```
