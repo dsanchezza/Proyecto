@@ -1,4 +1,4 @@
-<img width="1191" height="134" alt="Captura de pantalla 2025-07-20 230414" src="https://github.com/user-attachments/assets/ae645f88-1b62-48db-a213-7fdf9cb9059d" />
+
 # Proyecto final POO
 Construir una aplicación que emule una un sistema de gestión de inventario para una bodega.
 
@@ -22,3 +22,7 @@ Antes de iniciar con la visualización del proyecto y la explicación de este mi
 
 python --version
 pip --version
+
+<img width="1191" height="134" alt="Captura de pantalla 2025-07-20 230414" src="https://github.com/user-attachments/assets/ae645f88-1b62-48db-a213-7fdf9cb9059d" />
+
+Si está correctamente instalado, ambos comandos devolverán la versión, así podemos continuar al siguiente paso
