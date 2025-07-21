@@ -1,10 +1,8 @@
 import sqlite3
 import pandas as pd
 
-# Leer el archivo Excel
 df = pd.read_excel("productos.xlsx", engine='openpyxl')
 
-# Convertir tipos de datos a tipos nativos de Python
 productos = [
     (
         int(row["id"]),
@@ -20,11 +18,9 @@ productos = [
     for _, row in df.iterrows()
 ]
 
-# Conectar a la base de datos
 conn = sqlite3.connect("inventario.db")
 cursor = conn.cursor()
 
-# Crear la tabla si no existe
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS producto (
         id INTEGER PRIMARY KEY,
@@ -39,7 +35,6 @@ cursor.execute('''
     )
 ''')
 
-# Insertar productos
 cursor.executemany('''
     INSERT INTO producto (
         id, nombre, descripcion, marca, modelo,
