@@ -46,7 +46,7 @@ pip install pandas openpyxl matplotlib
 ```
 
 Sin embargo, aún falta una librería, la cual para instalarse es necesario crear una cuenta en la página web de esta misma
-- Link para registrarse (es importante consultar su nombre de usuario antes de continuar ya que este se pide durante la instalación)
+- Link para registrarse (es importante consultar su nombre de usuario antes de continuar ya que este se pide durante la instalación) https://www.reportlab.com/accounts/register/
 
 Finalmente, para la instalación de este programa se utilizará el siguiente comando en la terminal
 
