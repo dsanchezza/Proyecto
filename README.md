@@ -25,6 +25,14 @@ python --version
 pip --version
 ```
 
+
 <img width="1191" height="134" alt="Captura de pantalla 2025-07-20 230414" src="https://github.com/user-attachments/assets/ae645f88-1b62-48db-a213-7fdf9cb9059d" />
 
+
 Si está correctamente instalado, ambos comandos devolverán la versión, así podemos continuar al siguiente paso
+
+En este proyecto se hace uso de un entorno virtual, al crear la carpeta es importante que esto sea lo primero que se haga puesto que las dependencias del proyecto se instalarán en el entorno virtual, el cual se puede crear con el siguiente comando:
+
+```python
+python -m venv venv
+```
