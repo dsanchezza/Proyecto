@@ -15,3 +15,9 @@ Este sistema de inventario permite:
 - Generar comprobantes en PDF incluyendo sus respectivos gráficos de ventas
 - Hacer un ranking de los productos con mayor y menor stock
 - Interactuar por medio de una interfaz gráfica hecha con tkinter
+
+
+Antes de iniciar con la visualización del proyecto y la explicación de este mismo, es importante tener los requerimientos instalados, por lo cual, en la terminal de Windows se utilizará este comando para verificar que todo esté correctamente instalado:
+
+python --version
+pip --version
