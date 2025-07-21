@@ -23,6 +23,7 @@ Antes de iniciar con la visualización del proyecto y la explicación de este mi
 ```python
 python --version
 pip --version
+```
 
 <img width="1191" height="134" alt="Captura de pantalla 2025-07-20 230414" src="https://github.com/user-attachments/assets/ae645f88-1b62-48db-a213-7fdf9cb9059d" />
 
