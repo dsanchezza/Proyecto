@@ -115,80 +115,12 @@ La clase inventario es el núcleo del sistema de gestión de productos, puesto q
 
 ```python
 def crear_base_datos(self):
-        conexion = sqlite3.connect(self.nombre_base_datos)
-        cursor = conexion.cursor()
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS Ventas (
-                id_venta INTEGER PRIMARY KEY AUTOINCREMENT,
-                producto_id INTEGER,
-                producto_nombre TEXT,
-                cantidad_vendida INTEGER,
-                precio_unitario REAL,
-                total REAL,
-                fecha_venta TEXT
-            )
-        ''')
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS Proveedores (
-                id INTEGER,
-                nombre TEXT,
-                telefono INTEGER,
-                direccion TEXT,
-                email TEXT
-            )
-        ''')
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS Productos (
-                id INTEGER PRIMARY KEY,
-                nombre TEXT NOT NULL,
-                descripcion TEXT,
-                marca TEXT,
-                modelo TEXT,
-                proveedor_id INTEGER,
-                proveedor_nombre TEXT,
-                proveedor_telefono INTEGER,
-                proveedor_direccion TEXT,
-                proveedor_email TEXT,
-                fecha_compra TEXT,
-                cantidad INTEGER,
-                precio_unitario REAL
-            )
-        ''')
-    conexion.commit()
-        conexion.close()
 ```
 
 Este metodo crea las tablas necesarias en la base de datos SQLite si no existen,  lo cual permite inicializar la estructura para guardar la información de productos, ventas y proveedores.
 
 ```python
 def guardar_inventario(self):
-        conexion = sqlite3.connect(self.nombre_base_datos)
-        cursor = conexion.cursor()
-        for producto in self.productos:
-            cursor.execute('''
-                INSERT OR REPLACE INTO Productos (
-                    id, nombre, descripcion, marca, modelo,
-                    proveedor_id, proveedor_nombre, proveedor_telefono,
-                    proveedor_direccion, proveedor_email,
-                    fecha_compra, cantidad, precio_unitario
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ''', (
-                producto.id,
-                producto.nombre,
-                producto.descripcion,
-                producto.marca,
-                producto.modelo,
-                producto.proveedor.id,
-                producto.proveedor.nombre,
-                producto.proveedor.telefono,
-                producto.proveedor.direccion,
-                producto.proveedor.email,
-                producto.fecha_compra.strftime("%Y-%m-%d %H:%M:%S"),
-                producto.cantidad,
-                producto.precio_unitario
-            ))
-        conexion.commit()
-        conexion.close()
 ```
 
 Guarda los productos dentro de la tabla `productos` de la base de datos y está constantemente actualizando la base de datos.
@@ -208,32 +140,20 @@ Crea una copia de seguridad del archivo `inventario.db` dentro de una carpeta ll
 
 ```python
     def cargar_inventario_desde_sql(self):
-        conexion = sqlite3.connect("inventario.db")
-        cursor = conexion.cursor()
-        cursor.execute("""
-            SELECT id, nombre, descripcion, marca, modelo,
-                proveedor_id, proveedor_nombre, fecha_compra,
-                cantidad, precio_unitario
-            FROM Productos
-        """)
-        filas = cursor.fetchall()
-        self.productos = []
-        for fila in filas:
-            (
-                id_producto, nombre, descripcion, marca, modelo,
-                proveedor_id, proveedor_nombre, fecha_compra,
-                cantidad, precio_unitario
-            ) = fila
-
-            proveedor = Proveedor(proveedor_id, proveedor_nombre, 0, "", "")
-            fecha = datetime.fromisoformat(fecha_compra)
-
-            producto = Producto(
-                id_producto, nombre, descripcion, marca, modelo,
-                proveedor, fecha, cantidad, precio_unitario
-            )
-            self.productos.append(producto)
-        conexion.close()
 ```
 
 Lee los productos almacenados en la base de datos y los carga al iniciar la aplicación para que estén disponibles.
+
+**Clase venta**
+
+Esta clase representa el sistema de transacciones de ventas en el sistema de inventario, almacenando la información detallada sobre la venta y adicionalmente permite generar registros en la base de datos por medio de comprobantes en pdf.
+
+```python
+def generar_pdf(self, nombre_archivo, ventas_acumuladas=[]):
+```
+
+Este método genera un comprobante general en pdf que incluye:
+- Detalles individuales de cada venta
+- Un gráfico de barras con el resumen de los productos más vendidos.
+
+Para el gráfico se hace uso de la librería `matplotlib` que fue instalada previamente, y para el pdf se usa `reportlab` que crea un pdf de tamaño A4
