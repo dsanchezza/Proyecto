@@ -107,3 +107,25 @@ class Producto:
 ```
 
 Esta clase representa cada producto que se maneja en el inventario como ID, nombre, descripción, marca, modelo, fecha de compra, cantidad y precio unitario; proveedor es una instancia de la clase Proveedor. En cuanto a los metodos, `sumar_stock` suma una cantidad al stock actual del producto, mientras que `reducir_stock` le resta unidades al stock actual __solo si hay suficiente,__ si no hay inventario suficiente, no hace nada. `informacion_producto` devuelve un string con el nombre, marca, modelo y cantidad de un producto en inventario
+
+**Clase inventario**
+La clase inventario es el núcleo del sistema de gestión de productos, puesto que maneja la lista de productos y la base de datos SQLite
+
+```python
+class Inventario:
+    def __init__(self):
+        self.productos = []
+        self.nombre_base_datos = "inventario.db"
+```
+
+Crea una lista interna que guarda objetos, adicionalmente, crea el nombre de la base de datos (en este caso inventario.db)
+
+```python
+def buscar_por_id(self, id_producto):
+    for producto in self.productos:
+        if producto.id == id_producto:
+            return producto
+    return None
+```
+`self.productos` es una lista que contiene todos aquellos objetos actualmente cargados en el inventario, para cada producto en esta lista se compara el atributo id con el valor entregado como parámetro (`id_producto` en este caso) si encuentra un producto cuyo id coincida lo retorna, si no lo encuentra, retorna un None para indicar que el producto no está en el inventario actual.
+
